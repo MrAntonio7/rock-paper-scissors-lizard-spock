@@ -389,6 +389,7 @@ function renderFin(data) {
         socket.off('aviso');
         socket.off('addmensaje');
         socket.off('addmensajeglobal');
+        socket.disconnect();
     }, 5000);
 }
 
