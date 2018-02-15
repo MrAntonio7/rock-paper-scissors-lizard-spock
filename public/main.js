@@ -114,6 +114,9 @@ function renderNick(name) {
 
 function sendNick(e) {
     nick = document.getElementById("nickname").value;
+    if (nick == '') {
+        nick = 'Anónimo';
+    }
     document.getElementById("form-nickname").style.display = "none";
     document.getElementById("game").style.display = "block";
     socket.emit("nick", nick);
@@ -389,6 +392,7 @@ function renderFin(data) {
         socket.off('aviso');
         socket.off('addmensaje');
         socket.off('addmensajeglobal');
+        socket.disconnect();
     }, 5000);
 }
 
