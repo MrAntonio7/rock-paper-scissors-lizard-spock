@@ -238,10 +238,11 @@ io.on("connection", function(socket) {
                     jugador.preparado = false;
                     jugador.preparadoEnemigo = false;
 
-                    io.sockets
-                        .in("room-" + jugador.sala)
-                        .emit("partidas", jugador.partidas);
+                    // io.sockets
+                    // .in("room-" + jugador.sala)
+                    // .emit("partidas", jugador.partidas);
                 }
+
             });
 
             socket.on('puntuacion', function(data) {

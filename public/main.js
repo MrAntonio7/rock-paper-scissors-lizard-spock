@@ -4,6 +4,7 @@ var opcion;
 var opcionEnemiga;
 var puntuacion = 0;
 var puntuacionEnemiga = 0;
+var partidas = 0;
 
 socket.on("jugadores", function(jugadores) {
     if (jugadores.length < 2) {
@@ -42,14 +43,15 @@ socket.on("jugada", function(data) {
     renderReady();
     opcionEnemiga = undefined;
     opcion = undefined;
+    partidas += 1;
+    comprobarFin(partidas, 3);
+
     setTimeout(function() {
         document.getElementById('sheldon').innerHTML = '';
         blockOpciones();
         resetOpciones();
         noneReady();
-        socket.on("partidas", function(data) {
-            comprobarFin(data, 3);
-        });
+
         socket.emit('reset', undefined);
     }, 5000);
 });
@@ -74,6 +76,7 @@ socket.on("connectToRoom", function(data) {
 
 
 socket.on("partida-resultado", function(data) {
+
     renderFin(data);
 });
 
@@ -113,6 +116,7 @@ function renderNick(name) {
 }
 
 function sendNick(e) {
+
     nick = document.getElementById("nickname").value;
     if (nick == '') {
         nick = 'Anónimo';
