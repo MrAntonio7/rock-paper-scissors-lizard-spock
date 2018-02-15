@@ -315,6 +315,7 @@ function puntuacionUpdate(jugada) {
 }
 
 function comprobarFin(partidas, ruptura) {
+    console.log('Partidas: ' + partidas);
     if (partidas >= ruptura) {
         // console.log('Se ha acabado la partida al mejor de ' + ruptura);
         socket.emit('fin', partidas);
